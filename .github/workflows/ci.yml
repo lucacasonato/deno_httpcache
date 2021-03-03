@@ -1,4 +1,4 @@
-name: CI
+name: ci
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     services:
       redis:
         image: redis
@@ -18,16 +18,18 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          - 6379:6379
 
     steps:
       - name: Setup repo
         uses: actions/checkout@v2
 
       - name: Setup Deno
-        uses: denolib/setup-deno@c7d7968ad4a59c159a777f79adddad6872ee8d96
+        uses: denolib/setup-deno@v2
         with:
           deno-version: "v1.x"
-          
+
       - name: Format
         run: deno fmt --check
 

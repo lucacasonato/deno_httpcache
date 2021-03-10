@@ -21,7 +21,7 @@ Deno.test("[in memory] cache, retrieve, delete", async () => {
       originalResp.headers.get("server"),
       cachedResp.headers.get("server"),
     );
-    assertEquals(await cachedResp.text(), "Hello World");
+    assertEquals(await originalResp.text(), await cachedResp.text());
 
     await cache.delete("https://deno.land");
 

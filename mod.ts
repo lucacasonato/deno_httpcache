@@ -51,7 +51,9 @@ export class Cache {
   }
 
   async put(request: RequestInfo, response: Response): Promise<void> {
-    const req = request instanceof Request ? request : new Request(request);
+    const req = request instanceof Request
+      ? request.clone()
+      : new Request(request);
 
     const status = response.status;
     const headers = Object.fromEntries(response.headers.entries());

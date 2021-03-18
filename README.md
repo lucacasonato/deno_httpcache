@@ -8,7 +8,7 @@ Service Worker Cache API.
 Setting, getting, and deleting items in the cache:
 
 ```ts
-import { inMemoryCache } from "https://deno.land/x/httpcache@0.1.1/in_memory.ts";
+import { inMemoryCache } from "https://deno.land/x/httpcache@0.1.2/in_memory.ts";
 
 const cache = inMemoryCache(5);
 
@@ -29,7 +29,7 @@ console.log(await cache.get(req)); // undefined
 And with redis:
 
 ```ts
-import { redisCache } from "https://deno.land/x/httpcache@0.1.1/redis.ts";
+import { redisCache } from "https://deno.land/x/httpcache@0.1.2/redis.ts";
 
 const cache = await redisCache("redis://127.0.0.1:6379");
 

@@ -37,6 +37,24 @@ const cache = await redisCache("redis://127.0.0.1:6379");
 const cache = await redisCache("redis://127.0.0.1:6379", "v1-");
 ```
 
+With Amazon S3 for long-term caching:
+
+```ts
+import { s3Cache } from "https://deno.land/x/httpcache@0.1.2/s3.ts";
+import { S3Bucket } from "https://deno.land/x/s3@0.4.0/mod.ts";
+
+const bucket = new S3Bucket({
+  accessKeyID: Deno.env.get("AWS_ACCESS_KEY_ID")!,
+  secretKey: Deno.env.get("AWS_SECRET_ACCESS_KEY")!,
+  region: Deno.env.get("AWS_REGION")!,
+  bucket: "my-bucket",
+});
+const cache = await s3Cache(bucket);
+
+// you can also optionally specify a prefix to use for the object keys:
+const cache = await s3Cache(bucket, "cache/");
+```
+
 ## Contributing
 
 Before submitting a PR, please run these three steps and check that they pass.

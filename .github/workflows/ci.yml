@@ -20,6 +20,19 @@ jobs:
           --health-retries 5
         ports:
           - 6379:6379
+      minio:
+        image: minio/minio
+        command: server /data # GHA will not accept this
+        env:
+          MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
+          MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+        options: >-
+          --health-cmd "/usr/bin/healthcheck.sh"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 9000:9000
 
     steps:
       - name: Setup repo

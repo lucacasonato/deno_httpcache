@@ -1,4 +1,4 @@
-import CachePolicy from "https://cdn.skypack.dev/http-cache-semantics?dts";
+import { CachePolicy } from "https://cdn.skypack.dev/http-cache-semantics?dts";
 
 function cacheRequest(req: Request): CachePolicy.Request {
   return {
